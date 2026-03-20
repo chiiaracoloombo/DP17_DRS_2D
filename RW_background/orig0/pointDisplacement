@@ -1,0 +1,97 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2112                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       pointVectorField;
+    object      pointDisplacement;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+#include "../initialConditions"
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    front
+    {
+        type            empty;
+    }
+    back
+    {
+        type            empty;
+    }
+
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    outlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    topAndBottom
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    RW
+    {
+        type            angularOscillatingDisplacement;
+        axis            (0 1 0);
+        origin          (1.473271 -0.000034 0.744067);
+        angle0          0;
+        amplitude       $oscillationAmplitude;
+        omega           $oscillationOmega;
+        value           uniform (0 0 0);
+    }
+    F1
+    {
+        type            angularOscillatingDisplacement;
+        axis            (0 1 0);
+        origin          (1.866987 0.000000 0.900815);
+        angle0          0;
+        amplitude       $oscillationAmplitude;
+        omega           $oscillationOmega;
+        value           uniform (0 0 0);
+    }
+    F2
+    {
+        type            angularOscillatingDisplacement;
+        axis            (0 1 0);
+        origin          (1.887453 0.000000 0.997852);
+        angle0          0;
+        amplitude       $oscillationAmplitude;
+        omega           $oscillationOmega;
+        value           uniform (0 0 0);
+    }
+    U3
+    {
+        type            angularOscillatingDisplacement;
+        axis            (0 1 0);
+        origin          (1.676919 0.000000 1.007888);
+        angle0          0;
+        amplitude       $oscillationAmplitude;
+        omega           $oscillationOmega;
+        value           uniform (0 0 0);
+    }
+    ".*overset.*"
+    {
+        type            overset;
+        value           uniform (0 0 0);
+    }
+}

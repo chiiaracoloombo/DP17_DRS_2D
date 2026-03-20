@@ -1,0 +1,89 @@
+/*--------------------------------*- C++ -*----------------------------------*| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  8                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+#include "../../../initialConditions"
+
+libs ( "libforces.so" );
+
+RW_forceCoeffs
+{
+    type        forceCoeffs;
+    libs ( "libforces.so" );
+    writeControl    timeStep;
+    timeInterval    1;
+    log         true;
+    patches     ( RW );
+    rho         rhoInf;
+    rhoInf      1.225;
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+    CofR        (0 0.765 0);
+    pitchAxis   (0 1 0);
+    magUInf     16;
+    lRef        1.53;
+    Aref        1;
+    porosity    false;
+}
+
+F1_forceCoeffs
+{
+    type        forceCoeffs;
+    libs ( "libforces.so" );
+    writeControl    timeStep;
+    timeInterval    1;
+    log         true;
+    patches     ( F1 );
+    rho         rhoInf;
+    rhoInf      1.225;
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+    CofR        (0 0.765 0);
+    pitchAxis   (0 1 0);
+    magUInf     16;
+    lRef        1.53;
+    Aref        1;
+    porosity    false;
+}
+
+F2_forceCoeffs
+{
+    type        forceCoeffs;
+    libs ( "libforces.so" );
+    writeControl    timeStep;
+    timeInterval    1;
+    log         true;
+    patches     ( F2 );
+    rho         rhoInf;
+    rhoInf      1.225;
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+    CofR        (0 0.765 0);
+    pitchAxis   (0 1 0);
+    magUInf     16;
+    lRef        1.53;
+    Aref        1;
+    porosity    false;
+}
+
+U3_forceCoeffs
+{
+    type        forceCoeffs;
+    libs ( "libforces.so" );
+    writeControl    timeStep;
+    timeInterval    1;
+    log         true;
+    patches     ( U3 );
+    rho         rhoInf;
+    rhoInf      1.225;
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+    CofR        (0 0.765 0);
+    pitchAxis   (0 1 0);
+    magUInf     16;
+    lRef        1.53;
+    Aref        1;
+    porosity    false;
+}

@@ -1,0 +1,18 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      extrudeMeshDict;
+}
+constructFrom patch;
+sourceCase ".";
+sourcePatches (symFront);
+exposedPatchName symBack;
+flipNormals false;
+extrudeModel linearNormal;
+nLayers 1;
+expansionRatio 1.0;
+linearNormalCoeffs { thickness 0.05; }
+mergeFaces false;
+mergeTol 0;

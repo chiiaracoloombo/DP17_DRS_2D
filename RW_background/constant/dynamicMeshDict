@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh       dynamicOversetFvMesh;
+motionSolverLibs    ( "fvMotionSolvers.so" );
+solver              multiSolidBodyMotionSolver;
+
+multiSolidBodyMotionSolverCoeffs
+{
+    // c_F1
+    // {
+    //     solidBodyMotionFunction oscillatingRotatingMotion;
+    //     oscillatingRotatingMotionCoeffs
+    //     {
+    //         origin      (1.88 -0.05 0.9);   // Centro F1 - Y a meta' spessore mesh 2D
+    //         axis        (0 1 0);             // Rotazione attorno a Y (apertura alare)
+    //         omega       2.0;
+    //         amplitude   (0 0.1745 0);        // ~10 gradi
+    //     }
+    // }
+
+    // c_F2
+    // {
+    //     solidBodyMotionFunction oscillatingRotatingMotion;
+    //     oscillatingRotatingMotionCoeffs
+    //     {
+    //         origin      (1.89 -0.05 1.0);   // Centro F2 - Y a meta' spessore mesh 2D
+    //         axis        (0 1 0);
+    //         omega       2.0;
+    //         amplitude   (0 0.1745 0);
+    //     }
+    // }
+
+    movingZone
+    {
+        solidBodyMotionFunction oscillatingRotatingMotion;
+        oscillatingRotatingMotionCoeffs
+        {
+            origin      (1.7 -0.05 1.0);    // Centro U3 - Y a meta' spessore mesh 2D
+            axis        (0 1 0);
+            omega       2.0;
+            amplitude   (0 0.1745 0);
+        }
+    }
+}
+
+// ************************************************************************* //
