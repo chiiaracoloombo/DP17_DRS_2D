@@ -1,0 +1,28 @@
+/*--------------------------------*- C++ -*----------------------------------*| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  8                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeaturesDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include "../../initialConditions"
+
+surfaces ("RW.obj" "F1.obj" "F2.obj" "U3.obj");
+
+includedAngle   $inclAngle;
+
+subsetFeatures
+{
+        nonManifoldEdges       no;
+        openEdges       yes;
+}
+
+//writeObj                yes;
