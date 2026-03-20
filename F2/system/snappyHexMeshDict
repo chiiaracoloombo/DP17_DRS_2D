@@ -1,0 +1,105 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+castellatedMesh true;
+snap            true;
+addLayers       true;
+
+geometry
+{
+    F2.obj { type triSurfaceMesh; name F2; }
+}
+
+castellatedMeshControls
+{
+    maxLocalCells 5000000;
+    maxGlobalCells 10000000;
+    minRefinementCells 10;
+    maxLoadUnbalance 0.10;
+    nCellsBetweenLevels 2;
+
+    features ( { file "F2.eMesh"; level 4; } );
+
+    refinementSurfaces
+    {
+        F2 { level (4 5); patchInfo { type wall; } }
+    }
+
+    resolveFeatureAngle 30;
+
+    refinementRegions
+    {
+        F2
+        { 
+            mode distance;
+            levels 
+            ( 
+                (0.002 5) // vicino alla superficie 
+                (0.05 4)  // lontano dalla superficie
+            ); 
+        }
+    }
+
+    locationInMesh (1.75 0.002 0.85);
+    allowFreeStandingZoneFaces true;
+}
+
+snapControls
+{
+    nSmoothPatch 5;
+    tolerance 4.0;
+    nSolveIter 300;
+    nRelaxIter 5;
+    nFeatureSnapIter 20;
+    implicitFeatureSnap false;
+    explicitFeatureSnap true;
+    multiRegionFeatureSnap false;
+}
+
+addLayersControls
+{
+    relativeSizes true;
+    layers { F2 { nSurfaceLayers 6; } }
+    expansionRatio 1.15;
+    finalLayerThickness 0.7;
+    minThickness 0.05;
+    nGrow 0;
+    featureAngle 60;
+    slipFeatureAngle 30;
+    nSmoothSurfaceNormals 1;
+    nSmoothNormals 3;
+    nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedialAxisAngle 90;
+    nBufferCellsNoExtrude 0;
+    nLayerIter 20;
+    nRelaxIter 5;
+}
+
+meshQualityControls
+{
+    maxNonOrtho 65;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+    maxConcave 80;
+    minVol 1e-13;
+    minTetQuality 1e-30;
+    minArea -1;
+    minTwist 0.01;
+    minDeterminant 0.001;
+    minFaceWeight 0.02;
+    minVolRatio 0.01;
+    triangleTwist -1;
+    nSmoothScale 4;
+    errorReduction 0.75;
+    minTriangleTwist    -1;
+}
+
+writeFlags ( layerSets layerFields );
+mergeTolerance 1e-3;
