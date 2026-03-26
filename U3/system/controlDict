@@ -16,7 +16,14 @@ FoamFile
 //libs	( "mylibfvOptions.so" );
 //libs	( "forceCoeffsModified.so" );
 
-#include        "../../initialConditions"
+libs
+(
+"petscFoam"
+"overset" 
+"fvMotionSolvers"
+);
+
+#include        "../initialConditions"
 
 application     overPimpleDyMFoam;
 
@@ -67,15 +74,15 @@ functions
 {
     #include "functions/readFields"
     #include "functions/residuals"
-    #include "functions/forceCoeffs"
+    // #include "functions/forceCoeffs"
     // #include "functions/timeActivatedFileUpdate"
-    #include "functions/forces"
-    #include "functions/meanFields"
-    #include "functions/nearWallFields"
-    #include "functions/wallShearStresses"
-    #include "functions/vorticity"
-    #include "functions/Q"
-    #include "functions/Lambda2"
+    // #include "functions/forces"
+    // #include "functions/meanFields"
+    // #include "functions/nearWallFields"
+    // #include "functions/wallShearStresses"
+    // #include "functions/vorticity"
+    // #include "functions/Q"
+    // #include "functions/Lambda2"
     #include "functions/yPlus"
     // #include "functions/isoSurfaces"
 }

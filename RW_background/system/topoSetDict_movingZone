@@ -17,13 +17,35 @@ FoamFile
 actions
 (
     {
-        name    movingZone;
+        name    movingZone1;
         type    cellZoneSet;
         action  new;
         source  setToCellZone;
         sourceInfo
         {
-            set BGGrid;
+            set c_U3;
+        }
+    }
+
+    {
+        name    movingZone2;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set c_F1;
+        }
+    }
+
+    {
+        name    movingZone3;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set c_F2;
         }
     }
 );

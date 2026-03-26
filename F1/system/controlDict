@@ -16,7 +16,7 @@ FoamFile
 //libs	( "mylibfvOptions.so" );
 //libs	( "forceCoeffsModified.so" );
 
-#include        "../../initialConditions"
+#include        "../initialConditions"
 
 application     overPimpleDyMFoam;
 

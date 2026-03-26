@@ -1,0 +1,11 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
+}
+RW.obj { extractionMethod extractFromSurface; includedAngle 150; }
+F1.obj { extractionMethod extractFromSurface; includedAngle 150; }
+F2.obj { extractionMethod extractFromSurface; includedAngle 150; }
+U3.obj { extractionMethod extractFromSurface; includedAngle 150; }

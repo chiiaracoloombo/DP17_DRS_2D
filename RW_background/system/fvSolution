@@ -33,8 +33,9 @@ solvers
     pcorr
     {
         $p;
-        tolerance       0.02;
-        relTol          0;
+        solver          PCG;
+        preconditioner  DIC;
+
     }
 
     pcorrFinal
@@ -45,48 +46,59 @@ solvers
 
     U
     {
-        solver          PBiCGStab;
-        preconditioner  DILU;
-        tolerance       1e-6;
-        relTol          0.1;
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-5;
+        relTol          0.01;
     }
 
     UFinal
     {
         $U;
+        tolerance       1e-6;
         relTol          0;
     }
 
     "(k|omega|nuTilda)"
     {
-        solver          PBiCGStab;
-        preconditioner  DILU;
-        tolerance       1e-6;
-        relTol          0.1;
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8;
+        relTol          0;
     }
 
     "(k|omega|nuTilda)Final"
     {
-        solver          PBiCGStab;
-        preconditioner  DILU;
-        tolerance       1e-6;
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8;
         relTol          0;
     }
 
     cellDisplacement
     {
-        solver          GAMG;
-        tolerance       1e-5;
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-06;
         relTol          0;
-        smoother        GaussSeidel;
+        maxIter         100;
     }
 }
 
 PIMPLE
 {
-    nOuterCorrectors 10;
-    nCorrectors     2;
+    nOuterCorrectors    30;
+    nCorrectors         2;
     nNonOrthogonalCorrectors 1;
+
+    residualControl
+    {
+        "(U|p)"
+        {
+            tolerance   1e-4;
+            relTol      0;
+        }
+    }
     pRefCell        0;
     pRefValue       0;
 }

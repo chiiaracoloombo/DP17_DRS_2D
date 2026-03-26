@@ -90,23 +90,24 @@ castellatedMeshControls
 
 snapControls
 {
-    nSmoothPatch 5;
-    tolerance 4.0;
-    nSolveIter 100;
+    nSmoothPatch 3;
+    tolerance 2.0;
+    nSolveIter 30;
     nRelaxIter 5;
-    nFeatureSnapIter 20;
+    nFeatureSnapIter 10;
     implicitFeatureSnap false;
     explicitFeatureSnap true;
     multiRegionFeatureSnap false;
 }
 
+
 addLayersControls
 {
     relativeSizes true;
     layers { RW { nSurfaceLayers 6; } }
-    expansionRatio 1.15;
-    finalLayerThickness 0.7;
-    minThickness 0.1;
+    expansionRatio 1.1;
+    finalLayerThickness 0.2;
+    minThickness 0.01;
     nGrow 0;
     featureAngle 60;
     slipFeatureAngle 30;
@@ -117,7 +118,7 @@ addLayersControls
     maxThicknessToMedialRatio 0.3;
     minMedialAxisAngle 90;
     nBufferCellsNoExtrude 0;
-    nLayerIter 20;
+    nLayerIter 50;
     nRelaxIter 5;
 }
 

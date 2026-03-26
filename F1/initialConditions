@@ -1,0 +1,295 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  8                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       IOobject;
+    location    "0";
+    object      initialConditions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+np            8;
+
+
+//for SIMPLE
+iterations           100;
+writeStep            50;
+
+turbModel            kOmegaSST;
+
+flowVelocity         (16 0 0);
+pressure             0;
+turbulentKE          0.085;
+turbulentOmega       1.78;
+
+
+rho                  1.225;
+lift                 (0 0 1);
+drag                 (1 0 0);
+CR                   (0 0.765 0);// (1.08 0 0.145)
+pitch                (0 1 0);
+magU                 16;
+wb                   1.53;
+A                    1;
+
+
+FLCenter           (0 -0.6225613 0.1981985);
+FLaxis                 (0 -0.99984769516 0.01745240644);// camber 1 gradi
+FLomega                 80.2407;
+
+FRCenter           (0 0.6225613 0.1981985);
+FRaxis                 (0 0.99984769516 0.01745240644);
+FRomega                 -80.2407;
+
+RLCenter        (1.53 -0.6225613 0.1981985);
+RLaxis                 (0 -0.99984769516 0.01745240644);
+RLomega                 80.2407;
+
+RRCenter        (1.53 0.6225613 0.1981985);
+RRaxis                 (0 0.99984769516 0.01745240644);
+RRomega                 -80.2407;
+
+
+/* OLD
+FLCenter           (0 -0.625 0.198);
+FLaxis                 (0 -0.9999619 0.0087265);// camber 0.5 gradi
+FLomega                 80.2407;
+
+FRCenter           (0 0.625 0.198);
+FRaxis                 (0 0.9999619 0.0087265);
+FRomega                 -80.2407;
+
+RLCenter        (1.53 -0.625 0.198);
+RLaxis                 (0 -0.9999619 0.0087265);
+RLomega                 80.2407;
+
+RRCenter        (1.53 0.625 0.198);
+RRaxis                 (0 0.9999619 0.0087265);
+RRomega                 -80.2407;
+*/
+
+
+// ============ Relaxation Factors ===============
+/*pRF     0.3;
+URF                  0.7;
+kRF                  0.7;
+omegaRF              0.7;*/
+
+
+// ============= FOR snappyHexMesh ====================
+inclAngle 180; // was 180, from featureExtract
+
+// Distance from car ref.
+dist1 0.015;
+ref1 9;
+
+dist20.1; // ==================== distance 
+ref28; //7
+
+dist3 0.18;
+ref3 7; //6
+
+dist4 0.25;
+ref46;
+
+dist5 0.4;
+ref5 5;
+
+dist6 1.0;
+ref6 4;
+
+
+
+// Distance monocoque
+
+dist1Mono0.15; // ==================== distance 
+ref1Mono8;
+
+dist2Mono 0.2;
+ref2Mono 7;
+
+dist3Mono 0.3;
+ref3Mono6;
+
+
+// BOX CASE DISTANCE
+
+min1                   (-0.2 0.45 0); // =============== scia ruota front
+max1                   (0.4 1.0 0.4);
+lvl1                   7; //4
+
+min2                   (1.3 0.45 0); // =============== scia ruota rear
+max2                   (2.2 1.0 0.4);
+lvl2                   4; //4
+
+min3                  (-6 0 0); // =============== box grande
+max3                  (20 3 6);
+lvl3                  1;
+
+min4                  (-1.2 0 0); // =============== box macchina
+max4                  (2.2 1.41 0.9);
+lvl4                  6; //5
+
+min5                  (1.5 0 0); // =============== box wake near
+max5                  (4.5 1.8 2);
+lvl5                  4; //4
+
+min6                  (1.5 0 0); // =============== box wake middle
+max6                  (8 2 2.3);
+lvl6                  3;
+
+
+min7               (1.5 0 0); // ================= box wake far
+max7                (15 2.5 4);
+lvl7                2;
+
+min8              (1.58 0 0.05); // ================= battery fan
+max8                (1.98 0.15 0.3);
+lvl8                8;
+
+min9 (1.7789154 0.3168036 0.1985971); // ================= radiator fan
+max9  (2.2120933 0.3168036 0.4483109);
+radius9 0.1;
+lvl9 8;
+
+min10              (-1.15 0 0); // ================= ground
+max10               (2.8 1.15 0.55);
+lvl10                7; 
+
+min11              (2.2 0 0); // ================= box wake near near
+max11               (4.5 1.5 1.5);
+lvl11                5;  
+
+min12             (2.0 0 0); 
+max12               (2.4 1.0 0.6);
+lvl12                7;                
+  
+min13              (0.9 0 0.45); // ================= mainhoop 
+max13               (1.4 0.3 1.1);
+lvl13                8; 
+/*
+
+BOX CASE SENZA DISTANCE
+
+min1                (-2.45 -2.5 -1); // ================= scia molto grande
+max1                (11.45 2.5 3);
+lvl1                4;
+
+min2                (-1 -0.9 -1); // =============== scia 
+max2                (4 0.9 1.8);
+lvl2                5;
+
+min3                   (-1.25 -0.9 0); // ===============macchina inferiore
+max3                   (2.25 0.9 0.7);
+lvl3                   6;
+
+min4                   (-0.4 -0.9 0); // ===============macchina superiore
+max4                   (2.25 0.9 1.3);
+lvl4                   6;
+
+min5                   (0.10 -0.9 0); // ===============undertray
+max5                   (1.4 0.9 0.3);
+lvl5                   7;
+*/
+
+
+Mono_RefLvl      (9 9);
+Mono_feature       9; // max(RefLvl)
+
+Susp_RefLvl      (9 9);
+Susp_feature       9; // max(RefLvl)
+
+Upright_RefLvl      (9 9);
+Upright_feature       9; // max(RefLvl)
+
+UT_RefLvl        (9 9);
+UT_feature       9; // max(RefLvl)
+
+UB_RefLvl        (9 9);
+UB_feature       9; // max(RefLvl)
+
+FW_RefLvl        (9 9);
+FW_feature       9; // max(RefLvl)
+
+RW_RefLvl        (9 9);
+RW_feature      9; // max(RefLvl)
+
+Wheels_RefLvl    (9 9);
+Wheels_feature       9; // max(RefLvl)
+
+Tyre_Plinth_RefLvl    (11 11);
+Tyre_Plinth_feature       11; // max(RefLvl)
+
+Fan_RefLvl    (8 8);
+Fan_feature      8; // max(RefLvl)
+
+Porous_RefLvl    (8 8);
+Porous_feature      8; // max(RefLvl)
+
+featureAngle           250; //was 300
+slipFeatureAngle            50; //90
+maxThicknessToMedialRatio  1.2; 
+minMedialAxisAngle         160;
+maxFaceThicknessRatio        3;
+nSmoothNormals               8;
+nSmoothSurfaceNormals        8;
+nSmoothThickness            10;
+nRelaxIter                  10;
+
+
+/*
+Mono_nLayers        7;
+Susp_nLayers        7;
+Upright_nLayers     7;
+UT_nLayers          8;
+UB_nLayers          7;
+FW_nLayers          8;
+RW_nLayers          8;
+ground_nLayers      7;
+Wheels_nLayers      7;
+plinth_nLayers      1;*/
+
+Mono_nLayers        5;
+Susp_nLayers        5;
+Upright_nLayers     5;
+UT_nLayers          6;
+UB_nLayers          5;
+FW_nLayers          5;
+RW_nLayers          6;
+ground_nLayers      5;
+Wheels_nLayers      4;
+plinth_nLayers      1;
+
+expansionRatio                  1.1;
+expansionRatio_fw               1.2;
+expansionRatio_mono             1.2;
+expansionRatio_wheels          1.15;
+expansionRatio_ground           1.3;
+firstLayerThickness        0.5; //0.3 per 2E-6, per 2E-7 è 0.64
+firstLayerThickness_mono0.5;
+firstLayerThickness_wheels0.5;
+firstLayerThickness_plinth0.9; 
+firstLayerThickness_ground     0.25;
+relativeSizes true;
+
+
+
+// =========== FOR nearWallFields FUNCTION =============
+U_near_d             0.001;
+
+// =========== FOR isoSurfaces FUNCTION =============
+Q_isoSurface10000;
+
+// Motion Properties
+oscillationAmplitude 0.1745; // 10 degrees
+oscillationOmega     10;
+nRelaxIter 10;
+

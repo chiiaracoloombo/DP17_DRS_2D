@@ -23,7 +23,7 @@ libs
 "fvMotionSolvers"
 );
 
-#include        "../../initialConditions"
+#include        "../initialConditions"
 
 application     overPimpleDyMFoam;
 
@@ -33,17 +33,17 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.3;
+endTime         0.5;
 
 deltaT          1e-05;
 
 writeControl    runTime;
 
-writeInterval   0.01;
+writeInterval   0.005;
 
 adjustTimeStep  yes;
 
-maxCo           0.5;
+maxCo           5;
 
 maxAlphaCo      1;
 

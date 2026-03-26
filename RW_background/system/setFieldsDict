@@ -30,23 +30,6 @@ regions
         );
     }
 
-    // cellToCell
-    // {
-    //     set c_F1;
-    //     fieldValues
-    //     (
-    //         volScalarFieldValue zoneID 1
-    //     );
-    // }
-
-    // cellToCell
-    // {
-    //     set c_F2;
-    //     fieldValues
-    //     (
-    //         volScalarFieldValue zoneID 2
-    //     );
-    // }
 
     cellToCell
     {
@@ -56,6 +39,25 @@ regions
             volScalarFieldValue zoneID 0
         );
     }
+
+    cellToCell
+    {
+        set c_F1;
+        fieldValues
+        (
+            volScalarFieldValue zoneID 2
+        );
+    }
+
+    cellToCell
+    {
+        set c_F2;
+        fieldValues
+        (
+            volScalarFieldValue zoneID 3
+        );
+    }
+
 );
 
 // ************************************************************************* //
